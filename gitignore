@@ -1,0 +1,17 @@
+.DS_Store
+log
+log/*.log
+mkmf.log
+tmp/**/*
+tmp/*
+doc/api
+doc/app
+public/cache/**/*
+nbproject
+nbproject/**/*
+vendor/gems/**/*.bundle
+vendor/gems/**/*.o
+vendor/gems/**/ext/Makefile
+**/mkmf.log
+**/*~
+*~
