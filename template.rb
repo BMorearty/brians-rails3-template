@@ -776,5 +776,4 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 #   - uses will_paginate in the controller and the view
 #   - creates an attr_accessible statement in the model, like nifty_generator
 #   - requires shoulda in test_helper.rb
-# - add whiny_protected_attributes
 # - add attr_encodable for JSON APIs
