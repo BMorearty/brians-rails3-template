@@ -747,7 +747,7 @@ AdminDataConfig.set = {
 git :add => ".", :commit => "-m 'add admin_data.'"
 
 # TODO:
-# - convert from template to builder?
+# - convert from template to builder? See http://pivotallabs.com/users/mbarinek/blog/articles/1437-rails-3-application-builders
 #   - Would lose incremental git adds and commits.
 #   - Code might be cleaner.
 #   - Make a class that extends Rails::AppBuilder (railties/lib/rails/generators/rails/app/app_generator).
