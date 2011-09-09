@@ -764,6 +764,7 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 # - add http://transfs.com/devblog/2010/05/05/tame-your-analytics-libraries-with-analytical/
 # - add http://github.com/jbr/freighthopper
 # - add http://github.com/qmx/canivete for the 'deprecate' method
+# - add https://github.com/paneq/activemodel-warnings ?
 # - write a brian_scaffold that:
 #   - uses aegis permissions
 #   - generates tests for aegis permissions
