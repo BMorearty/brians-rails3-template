@@ -764,13 +764,14 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 # - fix users/show.html.erb to show something reasonable (don't divulge ip, last login, etc.)
 # - add hoptoad or exceptional
 # - add new relic
-# - add http://github.com/37signals/fast_remote_cache
-# - see http://github.com/ffmike/BigOldRailsTemplate for more ideas
-# - add http://github.com/eliotsykes/asset_fingerprint
-# - add http://transfs.com/devblog/2010/05/05/tame-your-analytics-libraries-with-analytical/
-# - add http://github.com/jbr/freighthopper
-# - add http://github.com/qmx/canivete for the 'deprecate' method
+# - add https://github.com/37signals/fast_remote_cache
+# - see https://github.com/ffmike/BigOldRailsTemplate for more ideas
+# - add https://github.com/eliotsykes/asset_fingerprint
+# - add https://transfs.com/devblog/2010/05/05/tame-your-analytics-libraries-with-analytical/
+# - add https://github.com/jbr/freighthopper
+# - add https://github.com/qmx/canivete for the 'deprecate' method
 # - add https://github.com/paneq/activemodel-warnings ?
+# - add https://github.com/josevalim/rails-footnotes ?
 # - write a brian_scaffold that:
 #   - uses aegis permissions
 #   - generates tests for aegis permissions
