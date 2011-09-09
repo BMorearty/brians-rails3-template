@@ -747,6 +747,12 @@ AdminDataConfig.set = {
 git :add => ".", :commit => "-m 'add admin_data.'"
 
 # TODO:
+# - convert from template to builder? See http://pivotallabs.com/users/mbarinek/blog/articles/1437-rails-3-application-builders
+#   - Would lose incremental git adds and commits.
+#   - Code might be cleaner.
+#   - Make a class that extends Rails::AppBuilder (railties/lib/rails/generators/rails/app/app_generator).
+#     - Override methods in Rails::AppBuilder to modify the built-in behavior.
+#     - Add new methods that will be called at the end.
 # - add jquery-ui?
 # - add my stuff for updating the flash with ajax
 # - add code to make formtastic use an input field by default for date, and to
@@ -777,4 +783,4 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 #   - uses will_paginate in the controller and the view
 #   - creates an attr_accessible statement in the model, like nifty_generator
 #   - requires shoulda in test_helper.rb
-# - add whiny_protected_attributes
+# - add attr_encodable for JSON APIs
