@@ -762,7 +762,7 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 # - copy the permission checks and similar logic from users_controller.rb in upatwee
 # - redirect someplace better than /users/1/show after creating a user account
 # - fix users/show.html.erb to show something reasonable (don't divulge ip, last login, etc.)
-# - add hoptoad or exceptional
+# - add airbrake or exceptional
 # - add new relic
 # - add https://github.com/37signals/fast_remote_cache
 # - see https://github.com/ffmike/BigOldRailsTemplate for more ideas
