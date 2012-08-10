@@ -8,9 +8,7 @@
 #   - If resque is added, adds helper scripts resque, resque-web, and resque-workers.
 #     Also stops resque workers temporarily during deploy, restarts when done deploying.
 # - Adds will_paginate
-# - Adds in_enumerable
 # - Adds hash_mapper
-# - Adds formtastic and overrides some default styles
 # - Adds aegis (permissions) and creates a default permissions file with :guest, :registered, and :admin roles
 #   - Adds an assign_role rake task to assign a role to a user
 # - Adds authlogic
@@ -168,9 +166,7 @@ end
 
 gem "jrails"        # jquery replacement for prototype helpers
 gem "will_paginate" # pagination
-gem "in_enumerable" # in?()
 gem "hash_mapper"   # map hash attributes
-gem "formtastic"    # forms
 gem "aegis"         # permissions
 git :add => ".", :commit => "-m 'add more gems.'"
 
@@ -226,69 +222,14 @@ private
 end
 }
 
-generate :formtastic
-file "public/stylesheets/formtastic_changes.css", <<-END
-form.formtastic fieldset ol li                 { margin-bottom: 1em; }
-
-                                               /* Override default inline-block */
-form.formtastic fieldset                       { display: block; }
-form.formtastic fieldset ol li                 { display: block; }
-                                               /* Right-align the label */
-form.formtastic	fieldset ol li label           { text-align: right; }
-
-                                               /* Formtastic default extends to the right edge of the window. No likey. */
-form.formtastic fieldset ol li.string input,
-form.formtastic fieldset ol li.password input,
-form.formtastic.fieldset ol li.numeric input,
-form.formtastic.fieldset ol li.textarea text   { width: auto; }
-
-      	      	      	      	      	       /* Put a little space between label and input field */
-form.formtastic fieldset ol li.string input,
-form.formtastic fieldset ol li.password input,
-form.formtastic.fieldset ol li.numeric input,
-form.formtastic.fieldset ol li.textarea text,
-form.formtastic fieldset ol li.commit input    { margin-left: 0.5em; }
-form.formtastic fieldset ol li p.inline-errors { padding-left: 0.5em; }
-
-                                                        /* Use the "vertical" class on the fieldset to put each label above its input field */
-form.formtastic	fieldset.vertical ol li label           { text-align: inherit; float: none; width: 100%; }
-      	      	      	      	      	                /* Don't put space between label and input field */
-form.formtastic fieldset.vertical ol li.string input,
-form.formtastic fieldset.vertical ol li.password input,
-form.formtastic.fieldset.vertical ol li.numeric input,
-form.formtastic.fieldset.vertical ol li.textarea text,
-form.formtastic fieldset.vertical ol li.commit input,
-form.formtastic fieldset.vertical ol li p.inline-errors { margin-left: 0; }
-form.formtastic fieldset.vertical ol li p.inline-errors { padding-left: 0; }
-
-                                               /* Use the "hide-required" class on the fieldset
-                                                  to hide the asterisk on required fields */
-form.formtastic fieldset.hide-required abbr[title=required] { display: none; }
-END
-git :add => ".", :commit => "-m 'add formtastic initializer and CSS files.'"
-
 file "config/locales/en.yml", <<-END
 en:
   activerecord:
     models:
       user: Account            # Create/edit account page button is "Create Account"/"Update Account"
-  formtastic:
-    actions:
-      user_session:
-        create: Login          # Submit button for GET /user_sessions/new, POST /user_sessions/create
   error_messages:
     login_invalid: should be letters, numbers, dashes, and underscores, please (starting with a letter)
 END
-
-sentinel = '# Formtastic::SemanticFormBuilder.i18n_lookups_by_default = false'
-gsub_file_with_match_check "config/initializers/formtastic.rb", /(#{Regexp.escape(sentinel)})/mi,
-  "Formtastic::SemanticFormBuilder.i18n_lookups_by_default = true"
-git :add => ".", :commit => "-m 'add English locale file and configure formtastic to use locales.'"
-
-sentinel = '# Formtastic::SemanticFormBuilder.default_text_field_size = 50'
-gsub_file_with_match_check "config/initializers/formtastic.rb", /(#{Regexp.escape(sentinel)})/mi,
-  "Formtastic::SemanticFormBuilder.default_text_field_size = 30"
-git :add => ".", :commit => "-m 'change formtastic default field size from 50 to 30.'"
 
 file "app/views/user_sessions/new.html.erb", <<-END
 <% title "Login" %>
@@ -710,7 +651,7 @@ file "app/views/layouts/application.html.erb", <<-END
   <head>
     <title><%= h(yield(:title)) %></title>
     <%= render :partial => "/layouts/yui_css" %>
-    <%= stylesheet_link_tag "formtastic", "formtastic_changes", "application", :cache => "all" %>
+    <%= stylesheet_link_tag "application", :cache => "all" %>
     <!--[if IE 7]>
     <%= stylesheet_link_tag "ie7" %>
     <![endif]-->
@@ -755,9 +696,6 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 #     - Add new methods that will be called at the end.
 # - add jquery-ui?
 # - add my stuff for updating the flash with ajax
-# - add code to make formtastic use an input field by default for date, and to
-#   add the "date" class by default to all such fields.  Add jQuery code to use datepicker for all "input.date" fields.
-#   Also fix the input/output formatting of such fields.
 # - support the "current" ID for user actions.  Then uncomment the edit-account route.
 # - copy the permission checks and similar logic from users_controller.rb in upatwee
 # - redirect someplace better than /users/1/show after creating a user account
@@ -776,8 +714,6 @@ git :add => ".", :commit => "-m 'add admin_data.'"
 #   - uses aegis permissions
 #   - generates tests for aegis permissions
 #   - generates "current_user" and "current_user=" methods in test_helper?
-#   - uses formtastic's easy mode without specifying any attrs
-#     - after I fix formtastic, only show the accessible (mass-assignable) attributes
 #   - uses helper methods instead of @instance variables
 #   - returns both xml and json
 #   - makes a _form partial like nifty_generator
